@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 
 <h1>Restaurants</h1>
 
@@ -30,4 +30,34 @@
 
 <br>
 
-<%= link_to 'New Restaurant', new_restaurant_path %>
+<%= link_to 'New Restaurant', new_restaurant_path %> -->
+
+
+
+<br>
+<div class="container">
+  <ul>
+    <% @restaurants.each do |restaurant| %>
+      <div class="row">
+        <div class="col-sm-2">
+          <h5><%= link_to "🍝 " + restaurant.name, restaurant_path(restaurant) %></h5>
+        </div>
+        <div class="col-sm-3 text-center">
+          <p><%= restaurant.address %></p>
+        </div>
+        <div class="col-sm-2 text-center">
+          <p><%= restaurant.category.capitalize %></p>
+        </div>
+        <div class="col-sm-2 text-center">
+          <p><%= restaurant.phone_number %></p>
+        </div>
+        <div class="col-sm-2 text-center">
+          <p><%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        </div>
+      </div>
+    <% end %>
+      <div class="row">
+        <div class="text-center"><%= link_to 'Add New Restaurant', new_restaurant_path %> --></div>
+      </div>
+  </ul>
+</div>

@@ -1,24 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="text-center">
+    <h2> 🍲<%= @restaurant.name %></h2>
+    <p> 🏠 <%= @restaurant.address %></p>
+    <p> 📞<%= @restaurant.phone_number %></p>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
-
-<p>
-  <strong>Phone number:</strong>
-  <%= @restaurant.phone_number %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @restaurant.category %>
-</p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+  <div class="container" id="reviews">
+    <ul>
+      <% @restaurant.reviews.each do |review| %>
+      <div class="row">
+        <div class="col-sm-2" id="rating">
+          <%= raw("<i class='fas fa-star'></i>" * review.rating) %>
+          </div>
+          <div class="col-sm-8 text-left"><%= review.content %></div>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+    <div class="row">
+      <div class="col-sm-2"><%= link_to "📨 Add a review", new_restaurant_review_path(@restaurant) %></div>
+      <br>
+      <div class="col-sm-1"><%= link_to "✍️ Edit", edit_restaurant_path(@restaurant) %></div>
+      <br>
+      <div class="col-sm-1"><%= link_to "⬅️ Back", restaurants_path %></div>
+    </div>
+</div>
